@@ -1,6 +1,6 @@
 <?php
 
-namespace RedFreak\Modules\Tests;
+namespace RedFreak\Menu\Tests;
 
 use Orchestra\Testbench\Concerns\CreatesApplication;
 use Orchestra\Testbench\PHPUnit\TestCase as BaseTestCase;

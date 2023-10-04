@@ -1,5 +1,5 @@
 <?php
 
-namespace RedFreak\Modules\Tests;
+namespace RedFreak\Menu\Tests;
 
 uses(TestCase::class)->in(__DIR__);
