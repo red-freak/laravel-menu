@@ -13,3 +13,7 @@ Larvel Menu is a package to create menus for laravel applications. It's a packag
 
 ## run tests
 `vendor/bin/pest --coverage-html ./tests/reports/pest`
+
+
+## special thanks
+- [Spatie](https://github.com/spatie) for general inspiration on package development and their workflows
