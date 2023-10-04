@@ -25,6 +25,10 @@ class MenuServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->registerCommands();
         }
+
+        $this->publishes([
+            __DIR__.'/../config/menus.php' => config_path('menus.php'),
+        ]);
     }
 
     protected function registerCommands(): void
