@@ -2,7 +2,6 @@
 
 namespace RedFreak\Menu;
 
-use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 
 class MenuServiceProvider extends ServiceProvider
@@ -14,7 +13,11 @@ class MenuServiceProvider extends ServiceProvider
 
     protected function registerFacades(): void
     {
+        $this->app->singleton(MenuManager::class, function() {
+            return new MenuManager();
+        });
 
+        $this->app->alias(MenuManager::class, 'red-freak::menu');
     }
 
     public function boot(): void
