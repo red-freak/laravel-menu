@@ -25,3 +25,8 @@ it('can render a menu with a label as translation key', function () {
     $menu = app(MenuManager::class)->add('testMenu', [RenderOptions::KEY_USE_LABELS_AS_TRANSLATION_KEYS => true]);
     expect($menu->render())->toBe('<ul class="menu">'.PHP_EOL.'testMenu_Translated'.PHP_EOL.'</ul>'.PHP_EOL);
 });
+
+it('registers a render-macro for a menu', function() {
+    app(MenuManager::class)->add('testMenu');
+    expect(MenuManager::testMenu())->toBe('<ul class="menu">'.PHP_EOL.'testMenu'.PHP_EOL.'</ul>'.PHP_EOL);
+});

@@ -39,7 +39,7 @@ class MenuManager
 
     protected function registerMacro(Item $item): void
     {
-        self::macro($item->label(), static function($item) {
+        self::macro($item->label(), static function() use ($item) {
             return $item->render();
         });
     }
