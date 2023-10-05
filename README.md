@@ -8,7 +8,7 @@ Larvel Menu is a package to create menus for laravel applications. It's a packag
 [![Total Downloads](https://img.shields.io/packagist/dt/red-freak/laravel-menu.svg)](https://packagist.org/packages/spatie/browsershot)
 
 ![Supported PHP Version](https://img.shields.io/badge/8.0%2C%208.1%2C%208.2-555?logo=php)
-![Supported Laravel Version](https://img.shields.io/badge/8.x%2C%209.x%2C%2010.x%2C%2011.x-555?logo=laravel)
+![Supported Laravel Version](https://img.shields.io/badge/8.x%2C%209.x%2C%2010.x-555?logo=laravel)
 
 
 ## coming up
