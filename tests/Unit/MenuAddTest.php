@@ -8,10 +8,12 @@ it('does not know an unregistered menu', function () {
 
 it('can register a menu', function () {
     $manager = app(MenuManager::class);
-    $manager->registerMenu('test', []);
+    $manager->add('test', []);
+    $manager->add('test2');
 
     expect(MenuManager::hasMenu('unregistered-menu'))->toBeFalse();
 
     expect(MenuManager::hasMenu('test'))->toBeTrue();
-    expect(MenuManager::menus())->toBe(['test']);
+    expect(MenuManager::hasMenu('test2'))->toBeTrue();
+    expect(MenuManager::menus())->toBe(['test', 'test2']);
 });

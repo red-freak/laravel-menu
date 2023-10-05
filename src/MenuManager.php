@@ -11,11 +11,11 @@ class MenuManager
     public function __construct()
     {
         foreach(config('menus', []) as $menuName => $menuData) {
-            $this->registerMenu($menuName, $menuData);
+            $this->add($menuName, $menuData);
         }
     }
 
-    public function registerMenu(string $menuName, array $menuData): void
+    public function add(string $menuName, array $menuData = []): void
     {
         self::macro($menuName, static function() use ($menuData) {
             return $menuData;
