@@ -21,7 +21,7 @@ class MenuManager
         }
     }
 
-    public function add(string $menuName, array $menuData = []): Item
+    public function add(string $menuName, array $menuData = []): Menu
     {
         $menu = $this->registerMenu($menuName, $menuData);
         $this->registerMacro($menu);
