@@ -37,3 +37,15 @@ it('can render a menu with a label as translation key', function () {
         .'</ul>'.PHP_EOL
     );
 });
+
+it('can add a has-children class', function () {
+    config()->set('menus.classes.add_has_children', true);
+    $menu = app(MenuManager::class)->add('testMenu', [RenderOptions::KEY_USE_LABELS_AS_TRANSLATION_KEYS => true])->add(new Item('testItem', 'link'));
+    expect($menu->render())->toBe(
+        '<ul class="menu has-children menu-level-0">'.PHP_EOL
+        .'  <li class="menu-item menu-level-1">'.PHP_EOL
+        .'    <a href="link">testItem</a>'.PHP_EOL
+        .'  </li>'.PHP_EOL
+        .'</ul>'.PHP_EOL
+    );
+});

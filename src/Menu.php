@@ -75,10 +75,6 @@ class Menu extends Item
 
     public function renderOptions(): RenderOptions
     {
-        if ($this->isRootMenu()) {
-            return $this->renderOptions;
-        }
-
-        return $this->parent->renderOptions();
+        return $this->renderOptions;
     }
 }

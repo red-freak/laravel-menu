@@ -76,10 +76,9 @@ class RenderOptions
         }
         if (($item instanceof Menu || $item instanceof ResourceItem) && $item->hasParent()) {
             $classes[] = config('menus.classes.root', 'sub-menu');
-
-            if (config('menus.classes.add_has_children', false) && $item->hasChildren()) {
-                $classes[] = 'has-children';
-            }
+        }
+        if (config('menus.classes.add_has_children', false) && $item->hasChildren()) {
+            $classes[] = 'has-children';
         }
         if ($item->hasParent() && !$item->hasChildren()) {
             $classes[] = config('menus.classes.item', 'menu-item');
@@ -96,6 +95,7 @@ class RenderOptions
         return array_merge(['index'], config('menus.model_routes', ['create']));
     }
 
+    // @codeCoverageIgnoreStart
     public function toMenuDataArray(): array
     {
         return [
@@ -104,4 +104,5 @@ class RenderOptions
             self::KEY_LINK_SUBMENU_ANCHOR => $this->linkSubmenuAnchor,
         ];
     }
+    // @codeCoverageIgnoreEnd
 }
