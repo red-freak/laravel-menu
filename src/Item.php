@@ -14,12 +14,19 @@ class Item
             $this->setParent($parent);
         }
         $this->label = $label;
-        $this->link = $link;
+        $this->setLink($link);
     }
 
     public function setParent(Menu|ResourceItem $parent): self
     {
         $this->parent = $parent;
+
+        return $this;
+    }
+
+    public function setLink(?string $link = null): self
+    {
+        $this->link = $link;
 
         return $this;
     }

@@ -29,10 +29,15 @@ class MenuManager
         return $menu;
     }
 
+    public function get(string $menuName): Menu
+    {
+        return $this->menus->get($menuName);
+    }
+
     protected function registerMenu(string $menuName, $menuData = []): Menu
     {
         if ($this->menus->has($menuName)) {
-            return $this->menus->get($menuName);
+            return $this->get($menuName);
         }
 
         $menu = new Menu($menuName, $menuData);

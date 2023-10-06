@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TestModel extends Model
 {
-
+    protected $attributes = [
+        'id' => 1,
+    ];
 }

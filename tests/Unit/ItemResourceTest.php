@@ -13,13 +13,12 @@ beforeEach(function() {
 });
 
 it('can attach a model based items', function () {
-    app()->register(MenuServiceProvider::class);
     $model = new TestModel();
     Route::resource($model->getTable(), TestController::class);
 
     expect(Menu::add('test', [
         RenderOptions::KEY_LINK_SUBMENU_ANCHOR => true, // whether to set the link at the submenu anchor or not
-    ])->addFromModel(TestModel::class)->render())->toBe(
+    ])->addItemByModel(TestModel::class)->render())->toBe(
         '<ul class="menu menu-level-0">'.PHP_EOL
         . '  <li class="sub-menu menu-item menu-level-1">'.PHP_EOL
         . '    <a href="http://localhost/test_models">menu.label.test_models.index</a>'.PHP_EOL
@@ -37,7 +36,7 @@ it('can attach a model based items', function () {
 
     expect(Menu::add('test2', [
         RenderOptions::KEY_LINK_SUBMENU_ANCHOR => false, // whether to set the link at the submenu anchor or not
-    ])->addFromModel($model)->render())->toBe(
+    ])->addItemByModel($model)->render())->toBe(
         '<ul class="menu menu-level-0">'.PHP_EOL
         . '  <li class="sub-menu menu-item menu-level-1">'.PHP_EOL
         . '    menu.label.test_models.index'.PHP_EOL
@@ -55,13 +54,12 @@ it('can attach a model based items', function () {
 });
 
 it('overrides a before added model', function() {
-    app()->register(MenuServiceProvider::class);
     $model = new TestModel();
     Route::resource($model->getTable(), TestController::class);
 
     Menu::add('test', [
         RenderOptions::KEY_LINK_SUBMENU_ANCHOR => false, // whether to set the link at the submenu anchor or not
-    ])->addFromModel($model)->addFromModel($model);
+    ])->addItemByModel($model)->addItemByModel($model);
 
     expect(Menu::add('test')->render())->toBe(
         '<ul class="menu menu-level-0">'.PHP_EOL
@@ -81,7 +79,6 @@ it('overrides a before added model', function() {
 });
 
 it('can add more than one model', function() {
-    app()->register(MenuServiceProvider::class);
     $model = new TestModel();
     Route::resource($model->getTable(), TestController::class);
     $model2 = new TestModel2();
@@ -89,7 +86,7 @@ it('can add more than one model', function() {
 
     Menu::add('test', [
         RenderOptions::KEY_LINK_SUBMENU_ANCHOR => false, // whether to set the link at the submenu anchor or not
-    ])->addFromModel($model)->addFromModel($model2);
+    ])->addItemByModel($model)->addItemByModel($model2);
 
     expect(Menu::add('test')->render())->toBe(
         '<ul class="menu menu-level-0">'.PHP_EOL
