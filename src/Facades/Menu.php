@@ -3,11 +3,11 @@
 namespace RedFreak\Menu\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use RedFreak\Menu\Item;
+use RedFreak\Menu\Menu as MenuDto;
 use RedFreak\Menu\MenuManager;
 
 /**
- * @method static Item add(string $menuName, array $menuData = [])
+ * @method static MenuDto add(string $menuName, array $menuData = [])
  * @method static bool hasMenu(string $menuName)
  * @method static array menus()
  *

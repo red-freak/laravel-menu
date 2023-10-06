@@ -27,14 +27,25 @@ class Menu extends Item
 
     public function add(Item $item): self
     {
+        $item->setParent($this);
         $this->items->put($item->label(), $item);
 
         return $this;
     }
 
-    public function addFromModel(Model $model): self
+    /**
+     * Creates navigation items by a model.
+     * @param  class-string|Model  $model
+     *
+     * @return $this
+     */
+    public function addFromModel(string|Model $model): self
     {
-        $this->items->put($model->getKey(), new ResourceItem($model));
+        if (is_string($model)) {
+            $model = new $model();
+        }
+
+        $this->items->put($model::class.'::'.$model->getKey(), new ResourceItem($model, $this));
 
         return $this;
     }
@@ -44,18 +55,20 @@ class Menu extends Item
         return $this->renderOptions->style();
     }
 
-    public function render(): string
+    public function render(int $currentLevel = 0): string
     {
-        $html = '<ul class="' . implode(' ', RenderOptions::classes($this)) . '">' . PHP_EOL;
-        $html .= $this->label() . PHP_EOL;
+        $html = str_pad('', $currentLevel*2, ' ') . '<ul class="' . implode(' ', RenderOptions::classes($this, $currentLevel++)) . '">' . PHP_EOL;
+
+//        dd($this->items->toArray());
 
         foreach ($this->items as $item) {
-            $html .= '<li class="' . implode(' ', RenderOptions::classes($item)) . '">' . PHP_EOL
-                     . $item->render()
-                     . '</li>' . PHP_EOL;
+            $html .= str_pad('', $currentLevel*2, ' ') . '<li class="'.implode(' ', RenderOptions::classes($item, $currentLevel)).'">'.PHP_EOL;
+            $html .= $item->render($currentLevel+1);
+            $html .= str_pad('', $currentLevel*2, ' ') . '</li>'.PHP_EOL;
         }
+        --$currentLevel;
 
-        $html .= '</ul>' . PHP_EOL;
+        $html .= str_pad('', $currentLevel*2, ' ') . '</ul>' . PHP_EOL;
 
         return $html;
     }

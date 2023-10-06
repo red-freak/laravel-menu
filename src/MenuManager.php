@@ -31,6 +31,10 @@ class MenuManager
 
     protected function registerMenu(string $menuName, $menuData = []): Menu
     {
+        if ($this->menus->has($menuName)) {
+            return $this->menus->get($menuName);
+        }
+
         $menu = new Menu($menuName, $menuData);
         $this->menus->put($menuName, $menu);
 
