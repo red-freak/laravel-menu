@@ -8,6 +8,7 @@ use RedFreak\Menu\MenuManager;
 
 /**
  * @method static MenuDto add(string $menuName, array $menuData = [])
+ * @method static self flush(string $menuName)
  * @method static MenuDto get(string $menuName)
  * @method static bool hasMenu(string $menuName)
  * @method static array menus()

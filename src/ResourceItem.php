@@ -50,6 +50,6 @@ class ResourceItem extends Item
     {
         $label = config('menus.default_translation_prefix', 'menu.label.') . $route;
 
-        return config('menus.use_labels_as_translation_keys', false) ? __($label) : $label;
+        return $this->renderOptions()->useLabelsAsTranslationKeys() ? __($label) : $label;
     }
 }

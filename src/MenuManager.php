@@ -29,6 +29,20 @@ class MenuManager
         return $menu;
     }
 
+    /**
+     * Forget a menu (mainly for testing purposes).
+     *
+     * @param  string  $menuName
+     *
+     * @return $this
+     */
+    public function flush(string $menuName): self
+    {
+        $this->menus->forget($menuName);
+
+        return $this;
+    }
+
     public function get(string $menuName): Menu
     {
         return $this->menus->get($menuName);
@@ -48,7 +62,7 @@ class MenuManager
 
     protected function registerMacro(Item $item): void
     {
-        self::macro($item->label(), static function() use ($item) {
+        self::macro($item->label(), function() use ($item) {
             return $item->render();
         });
     }
